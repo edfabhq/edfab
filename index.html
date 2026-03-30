@@ -15,7 +15,7 @@
       background: #f0f0f0;
       color: #111;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -24,7 +24,7 @@
 
     .container {
       padding: 2rem;
-      max-width: 640px;
+      max-width: 1024px;
     }
 
     h1 {
@@ -39,18 +39,77 @@
       font-size: 1.15rem;
       color: #555;
       line-height: 1.7;
+      margin: 0 auto 2.5rem auto;
+      max-width: 560px;
+    }
+
+    .projects {
       margin-bottom: 2.5rem;
     }
 
-    .badge {
+    .projects-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #aaa;
+      margin-bottom: 1.25rem;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .project-link {
       display: inline-block;
+      background: #fff;
+      color: #111;
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 0.75rem 1.75rem;
+      border-radius: 12px;
+      text-decoration: none;
+      border: 1px solid #e0e0e0;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .project-link:hover {
       background: #111;
       color: #fff;
-      font-size: 0.95rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      padding: 0.85rem 2.5rem;
-      border-radius: 14px;
+      border-color: #111;
+    }
+
+    .project-link span {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: #888;
+      margin-top: 0.2rem;
+      letter-spacing: 0.02em;
+    }
+
+    .project-link:hover span {
+      color: #aaa;
+    }
+
+    .contact {
+      font-size: 0.9rem;
+      color: #888;
+    }
+
+    .contact a {
+      color: #111;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: #bbb;
+      transition: text-decoration-color 0.2s;
+    }
+
+    .contact a:hover {
+      text-decoration-color: #111;
     }
   </style>
 </head>
@@ -61,7 +120,30 @@
       EdFab is an <b>education fabrication lab</b> — a space where learning
       experiences are designed, prototyped, and built from the ground up.
     </p>
-    <span class="badge">hello@edfab.org</span>
+
+    <div class="projects">
+      <p class="projects-label">Projects</p>
+      <div class="project-links">
+        <a href="https://gradeflow.edfab.org" class="project-link">
+          GradeFlow
+          <span>Advanced assessment grading</span>
+        </a>
+        <a href="https://edcraft.edfab.org" class="project-link">
+          EdCraft
+          <span>Assessment generation</span>
+        </a>
+        <a href="https://github.com/grid-universe" class="project-link">
+          Grid Universe
+          <span>Modular gridworld environment</span>
+        </a>
+        <a href="https://github.com/uniconhq" class="project-link">
+          Unicon
+          <span>Universal contest platform</span>
+        </a>
+      </div>
+    </div>
+
+    <p class="contact">Get in touch — <a href="mailto:hello@edfab.org">hello@edfab.org</a></p>
   </div>
 </body>
 </html>
