@@ -24,7 +24,7 @@
 
     .container {
       padding: 2rem;
-      max-width: 1024px;
+      max-width: 840px;
     }
 
     h1 {
@@ -74,6 +74,7 @@
       text-decoration: none;
       border: 1px solid #e0e0e0;
       transition: background 0.2s, border-color 0.2s;
+      position: relative;
     }
 
     .project-link:hover {
@@ -93,6 +94,20 @@
 
     .project-link:hover span {
       color: #aaa;
+    }
+
+    .wip-icon {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      width: 18px;
+      height: 18px;
+    }
+
+    .wip-icon svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
     }
 
     .contact {
@@ -117,7 +132,7 @@
   <div class="container">
     <h1>EdFab</h1>
     <p class="description">
-      EdFab is an <b>education fabrication lab</b> — a space where learning
+      <b>Education fabrication lab</b> — a space where learning
       experiences are designed, prototyped, and built from the ground up.
     </p>
 
@@ -137,8 +152,24 @@
           <span>Modular gridworld env</span>
         </a>
         <a href="https://github.com/uniconhq" class="project-link">
+          <span class="wip-icon" title="Under Construction">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4">
+              <path fill-rule="evenodd" d="M15 4.5A3.5 3.5 0 0 1 11.435 8c-.99-.019-2.093.132-2.7.913l-4.13 5.31a2.015 2.015 0 1 1-2.827-2.828l5.309-4.13c.78-.607.932-1.71.914-2.7L8 4.5a3.5 3.5 0 0 1 4.477-3.362c.325.094.39.497.15.736L10.6 3.902a.48.48 0 0 0-.033.653c.271.314.565.608.879.879a.48.48 0 0 0 .653-.033l2.027-2.027c.239-.24.642-.175.736.15.09.31.138.637.138.976ZM3.75 13a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" clip-rule="evenodd" />
+              <path d="M11.5 9.5c.313 0 .62-.029.917-.084l1.962 1.962a2.121 2.121 0 0 1-3 3l-2.81-2.81 1.35-1.734c.05-.064.158-.158.426-.233.278-.078.639-.11 1.062-.102l.093.001ZM5 4l1.446 1.445a2.256 2.256 0 0 1-.047.21c-.075.268-.169.377-.233.427l-.61.474L4 5H2.655a.25.25 0 0 1-.224-.139l-1.35-2.7a.25.25 0 0 1 .047-.289l.745-.745a.25.25 0 0 1 .289-.047l2.7 1.35A.25.25 0 0 1 5 2.654V4Z" />
+            </svg>
+          </span>
           Unicon
           <span>Universal contest platform</span>
+        </a>
+        <a href="https://github.com/codeflowhq" class="project-link">
+          <span class="wip-icon" title="Under Construction">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4">
+              <path fill-rule="evenodd" d="M15 4.5A3.5 3.5 0 0 1 11.435 8c-.99-.019-2.093.132-2.7.913l-4.13 5.31a2.015 2.015 0 1 1-2.827-2.828l5.309-4.13c.78-.607.932-1.71.914-2.7L8 4.5a3.5 3.5 0 0 1 4.477-3.362c.325.094.39.497.15.736L10.6 3.902a.48.48 0 0 0-.033.653c.271.314.565.608.879.879a.48.48 0 0 0 .653-.033l2.027-2.027c.239-.24.642-.175.736.15.09.31.138.637.138.976ZM3.75 13a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" clip-rule="evenodd" />
+              <path d="M11.5 9.5c.313 0 .62-.029.917-.084l1.962 1.962a2.121 2.121 0 0 1-3 3l-2.81-2.81 1.35-1.734c.05-.064.158-.158.426-.233.278-.078.639-.11 1.062-.102l.093.001ZM5 4l1.446 1.445a2.256 2.256 0 0 1-.047.21c-.075.268-.169.377-.233.427l-.61.474L4 5H2.655a.25.25 0 0 1-.224-.139l-1.35-2.7a.25.25 0 0 1 .047-.289l.745-.745a.25.25 0 0 1 .289-.047l2.7 1.35A.25.25 0 0 1 5 2.654V4Z" />
+            </svg>
+          </span>
+          CodeFlow
+          <span>Code visualization</span>
         </a>
       </div>
     </div>
