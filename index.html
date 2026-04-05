@@ -5,6 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EdFab - Education Fabrication Lab</title>
   <style>
+    :root {
+      --color-ink: #0f1a2e;
+      --color-bg-from: #f0f7ff;
+      --color-bg-to: #fff4f0;
+      --color-surface: #ffffff;
+      --color-border: #dceeff;
+      --color-muted: #4a5a7a;
+      --color-faint: #8090b0;
+      --color-blue-1: #1d6ff2;
+      --color-blue-2: #0ea5e9;
+      --color-coral-1: #ff5c3a;
+      --color-coral-2: #ff8c5a;
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -12,47 +26,127 @@
     }
 
     body {
-      background: #f0f0f0;
-      color: #111;
+      background: linear-gradient(135deg, var(--color-bg-from) 0%, var(--color-bg-to) 100%);
+      color: var(--color-ink);
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
+      overflow-x: hidden;
     }
 
-    .container {
-      padding: 2rem;
-      max-width: 840px;
+    body::before,
+    body::after {
+      content: '';
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.4;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::before {
+      width: 520px;
+      height: 520px;
+      background: radial-gradient(circle, #a8d4ff, #c0e0ff);
+      top: -120px;
+      left: -120px;
+      animation: drift 12s ease-in-out infinite alternate;
+    }
+
+    body::after {
+      width: 480px;
+      height: 480px;
+      background: radial-gradient(circle, #ffb89a, #ffd4c0);
+      bottom: -120px;
+      right: -120px;
+      animation: drift 14s ease-in-out infinite alternate-reverse;
+    }
+
+    @keyframes drift {
+      from { transform: translate(0, 0) scale(1); }
+      to   { transform: translate(40px, 30px) scale(1.08); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    main {
+      padding: 3rem 1.5rem;
+      max-width: 860px;
+      width: 100%;
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, var(--color-blue-1), var(--color-coral-1));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+      animation: fadeUp 0.5s ease both;
     }
 
     h1 {
-      font-size: clamp(3.5rem, 12vw, 6rem);
+      font-size: clamp(3.5rem, 12vw, 6.5rem);
       font-weight: 800;
       line-height: 1.05;
       letter-spacing: -0.03em;
-      margin-bottom: 1.5rem;
+      margin-bottom: 0.4rem;
+      animation: fadeUp 0.5s 0.05s ease both;
+      background: linear-gradient(135deg, var(--color-blue-1) 0%, #0a3a8a 40%, var(--color-coral-1) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .tagline-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 1.75rem;
+      animation: fadeUp 0.5s 0.1s ease both;
+    }
+
+    .tagline-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
     }
 
     .description {
-      font-size: 1.15rem;
-      color: #555;
-      line-height: 1.7;
-      margin: 0 auto 2.5rem auto;
-      max-width: 560px;
+      font-size: clamp(1rem, 2.5vw, 1.15rem);
+      color: var(--color-muted);
+      line-height: 1.75;
+      margin: 0 auto 3rem auto;
+      max-width: 540px;
+      animation: fadeUp 0.5s 0.15s ease both;
     }
 
     .projects {
-      margin-bottom: 2.5rem;
+      margin-bottom: 3rem;
+      animation: fadeUp 0.5s 0.2s ease both;
     }
 
     .projects-label {
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.15em;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: #aaa;
+      color: var(--color-faint);
       margin-bottom: 1.25rem;
     }
 
@@ -65,116 +159,155 @@
 
     .project-link {
       display: inline-block;
-      background: #fff;
-      color: #111;
+      background: var(--color-surface);
+      color: var(--color-ink);
       font-size: 0.95rem;
-      font-weight: 600;
-      padding: 0.75rem 1.75rem;
-      border-radius: 12px;
+      font-weight: 700;
+      padding: 0.85rem 1.75rem;
+      border-radius: 16px;
       text-decoration: none;
-      border: 1px solid #e0e0e0;
-      transition: background 0.2s, border-color 0.2s;
+      border: 1.5px solid var(--color-border);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
       position: relative;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     }
+
+    .project-link[data-accent="blue-deep"]:hover  { box-shadow: 0 8px 30px rgba(29,111,242,0.22);  border-color: #1d6ff2; }
+    .project-link[data-accent="blue-sky"]:hover   { box-shadow: 0 8px 30px rgba(14,165,233,0.22);  border-color: #0ea5e9; }
+    .project-link[data-accent="blue-navy"]:hover  { box-shadow: 0 8px 30px rgba(30,64,175,0.22);   border-color: #1e40af; }
+    .project-link[data-accent="coral"]:hover      { box-shadow: 0 8px 30px rgba(255,92,58,0.22);   border-color: #ff5c3a; }
+    .project-link[data-accent="coral-warm"]:hover { box-shadow: 0 8px 30px rgba(255,140,90,0.22);  border-color: #ff8c5a; }
 
     .project-link:hover {
-      background: #111;
-      color: #fff;
-      border-color: #111;
+      transform: translateY(-3px);
     }
 
-    .project-link span {
+    .project-link:focus-visible {
+      outline: 2px solid var(--color-blue-1);
+      outline-offset: 3px;
+    }
+    
+    .project-name {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+    }
+
+    .subtitle {
       display: block;
       font-size: 0.72rem;
       font-weight: 400;
-      color: #888;
-      margin-top: 0.2rem;
+      color: var(--color-muted);
+      margin-top: 0.25rem;
       letter-spacing: 0.02em;
     }
 
-    .project-link:hover span {
-      color: #aaa;
-    }
-
-    .wip-icon {
-      position: absolute;
-      top: 6px;
-      right: 6px;
-      width: 18px;
-      height: 18px;
-    }
-
-    .wip-icon svg {
-      width: 14px;
-      height: 14px;
-      fill: currentColor;
+    .wip-badge {
+      display: inline-block;
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: #fff3ee;
+      color: #c2410c;
+      padding: 2px 7px;
+      border-radius: 99px;
+      margin-left: 0.3rem;
+      vertical-align: middle;
+      border: 1px solid #fed7c0;
     }
 
     .contact {
       font-size: 0.9rem;
-      color: #888;
+      color: var(--color-muted);
+      animation: fadeUp 0.5s 0.3s ease both;
     }
 
     .contact a {
-      color: #111;
+      color: var(--color-blue-1);
       text-decoration: underline;
       text-underline-offset: 3px;
-      text-decoration-color: #bbb;
+      text-decoration-color: rgba(29,111,242,0.3);
+      font-weight: 600;
       transition: text-decoration-color 0.2s;
     }
 
     .contact a:hover {
-      text-decoration-color: #111;
+      text-decoration-color: var(--color-blue-1);
+    }
+
+    .contact a:focus-visible {
+      outline: 2px solid var(--color-blue-1);
+      outline-offset: 2px;
+      border-radius: 2px;
     }
   </style>
 </head>
 <body>
-  <div class="container">
+
+  <main>
+    <p class="eyebrow">Education Fabrication Lab</p>
+
     <h1>EdFab</h1>
+
+    <div class="tagline-bar">
+      <span class="tagline-dot" style="background:#1d6ff2"></span>
+      <span class="tagline-dot" style="background:#0ea5e9"></span>
+      <span class="tagline-dot" style="background:#ff5c3a"></span>
+    </div>
+
     <p class="description">
-      <b>Education fabrication lab</b> — a space where learning
-      experiences are designed, prototyped, and built from the ground up.
+      A space where <b>learning experiences</b> are designed, prototyped,
+      and built from the ground up — with curiosity, craft, and care.
     </p>
 
     <div class="projects">
       <p class="projects-label">Projects</p>
       <div class="project-links">
-        <a href="https://gradeflow.edfab.org" class="project-link">
-          GradeFlow
-          <span>Advanced assessment grading</span>
+
+        <a href="https://gradeflow.edfab.org" class="project-link"
+           data-accent="blue-deep" target="_blank" rel="noopener noreferrer">
+          <span class="project-name">GradeFlow</span>
+          <span class="subtitle">Advanced assessment grading</span>
         </a>
-        <a href="https://edcraft.edfab.org" class="project-link">
-          EdCraft
-          <span>Procedural assessment generation</span>
+
+        <a href="https://edcraft.edfab.org" class="project-link"
+           data-accent="blue-sky" target="_blank" rel="noopener noreferrer">
+          <span class="project-name">EdCraft</span>
+          <span class="subtitle">Procedural assessment generation</span>
         </a>
-        <a href="https://github.com/grid-universe" class="project-link">
-          Grid Universe
-          <span>Modular gridworld env</span>
+
+        <a href="https://github.com/grid-universe" class="project-link"
+           data-accent="blue-navy" target="_blank" rel="noopener noreferrer">
+          <span class="project-name">Grid Universe</span>
+          <span class="subtitle">Modular gridworld environment</span>
         </a>
-        <a href="https://github.com/uniconhq" class="project-link">
-          <span class="wip-icon" title="Under Construction">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4">
-              <path fill-rule="evenodd" d="M15 4.5A3.5 3.5 0 0 1 11.435 8c-.99-.019-2.093.132-2.7.913l-4.13 5.31a2.015 2.015 0 1 1-2.827-2.828l5.309-4.13c.78-.607.932-1.71.914-2.7L8 4.5a3.5 3.5 0 0 1 4.477-3.362c.325.094.39.497.15.736L10.6 3.902a.48.48 0 0 0-.033.653c.271.314.565.608.879.879a.48.48 0 0 0 .653-.033l2.027-2.027c.239-.24.642-.175.736.15.09.31.138.637.138.976ZM3.75 13a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" clip-rule="evenodd" />
-              <path d="M11.5 9.5c.313 0 .62-.029.917-.084l1.962 1.962a2.121 2.121 0 0 1-3 3l-2.81-2.81 1.35-1.734c.05-.064.158-.158.426-.233.278-.078.639-.11 1.062-.102l.093.001ZM5 4l1.446 1.445a2.256 2.256 0 0 1-.047.21c-.075.268-.169.377-.233.427l-.61.474L4 5H2.655a.25.25 0 0 1-.224-.139l-1.35-2.7a.25.25 0 0 1 .047-.289l.745-.745a.25.25 0 0 1 .289-.047l2.7 1.35A.25.25 0 0 1 5 2.654V4Z" />
-            </svg>
+
+        <a href="https://github.com/uniconhq" class="project-link"
+           data-accent="coral" target="_blank" rel="noopener noreferrer">
+          <span class="project-name">
+            Unicon
+            <span aria-label="Work in progress" class="wip-badge">WIP</span>
           </span>
-          Unicon
-          <span>Universal contest platform</span>
+          <span class="subtitle">Universal contest platform</span>
         </a>
-        <a href="https://github.com/codeflowhq" class="project-link">
-          <span class="wip-icon" title="Under Construction">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4">
-              <path fill-rule="evenodd" d="M15 4.5A3.5 3.5 0 0 1 11.435 8c-.99-.019-2.093.132-2.7.913l-4.13 5.31a2.015 2.015 0 1 1-2.827-2.828l5.309-4.13c.78-.607.932-1.71.914-2.7L8 4.5a3.5 3.5 0 0 1 4.477-3.362c.325.094.39.497.15.736L10.6 3.902a.48.48 0 0 0-.033.653c.271.314.565.608.879.879a.48.48 0 0 0 .653-.033l2.027-2.027c.239-.24.642-.175.736.15.09.31.138.637.138.976ZM3.75 13a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" clip-rule="evenodd" />
-              <path d="M11.5 9.5c.313 0 .62-.029.917-.084l1.962 1.962a2.121 2.121 0 0 1-3 3l-2.81-2.81 1.35-1.734c.05-.064.158-.158.426-.233.278-.078.639-.11 1.062-.102l.093.001ZM5 4l1.446 1.445a2.256 2.256 0 0 1-.047.21c-.075.268-.169.377-.233.427l-.61.474L4 5H2.655a.25.25 0 0 1-.224-.139l-1.35-2.7a.25.25 0 0 1 .047-.289l.745-.745a.25.25 0 0 1 .289-.047l2.7 1.35A.25.25 0 0 1 5 2.654V4Z" />
-            </svg>
+
+        <a href="https://github.com/codeflowhq" class="project-link"
+           data-accent="coral-warm" target="_blank" rel="noopener noreferrer">
+          <span class="project-name">
+            CodeFlow
+            <span aria-label="Work in progress" class="wip-badge">WIP</span>
           </span>
-          CodeFlow
-          <span>Code visualization</span>
+          <span class="subtitle">Code visualization</span>
         </a>
+
       </div>
     </div>
 
-    <p class="contact">Get in touch — <a href="mailto:hello@edfab.org">hello@edfab.org</a></p>
-  </div>
+    <p class="contact">
+      Get in touch — <a href="mailto:hello@edfab.org">hello@edfab.org</a>
+    </p>
+  </main>
 </body>
 </html>
