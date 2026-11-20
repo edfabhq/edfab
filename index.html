@@ -1,316 +1,364 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EdFab - Education Fabrication Lab</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>EdFab, the Education Fabrication Lab</title>
+  <meta name="description" content="A lab that turns problems in teaching into software. Each project does one thing well, and all of them are open source.">
+  <link rel="canonical" href="https://edfab.org/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://edfab.org/">
+  <meta property="og:site_name" content="EdFab">
+  <meta property="og:title" content="The Education Fabrication Lab">
+  <meta property="og:description" content="A lab that turns problems in teaching into software.">
+  <meta property="og:image" content="https://edfab.org/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#f4f6fa" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0f15" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap">
   <style>
     :root {
-      --color-ink: #0f1a2e;
-      --color-bg-from: #f0f7ff;
-      --color-bg-to: #fff4f0;
-      --color-surface: #ffffff;
-      --color-border: #dceeff;
-      --color-muted: #4a5a7a;
-      --color-faint: #8090b0;
-      --color-blue-1: #1d6ff2;
-      --color-blue-2: #0ea5e9;
-      --color-coral-1: #ff5c3a;
-      --color-coral-2: #ff8c5a;
+      color-scheme: light dark;
+      --background: #f4f6fa;
+      --surface: #ffffff;
+      --text: #0f172a;
+      --text-muted: #556070;
+      --text-faint: #8a94a6;
+      --border: #e3e7ef;
+      --accent: #1e47c8;
+      --accent-hover: #163a9e;
+      --accent-soft: #e6ecfc;
+      --on-accent: #ffffff;
+      --shadow: rgb(15 23 42 / .08);
+      --shadow-hover: rgb(15 23 42 / .12);
+      --highlight: rgb(255 255 255 / .5);
+      --badge-text: #a85b06;
+      --badge-background: #fcefdc;
+      --mark-left: #bcc8ef;
+      --mark-bottom: #748ddd;
+      --mark-right: #1e47c8;
+      --gradeflow-primary: #145ec1;
+      --gradeflow-muted: #91baf1;
+      --gradeflow-background: #e8f1fd;
+      --gradeflow-border: #d3e4fa;
+      --examdesk-primary: #1d4ed8;
+      --examdesk-muted: #bccbf7;
+      --examdesk-background: #ebeefd;
+      --examdesk-border: #d8def9;
+      --edcraft: #0f766e;
+      --edcraft-background: #d6f1ed;
+      --codeflow: #6d28d9;
+      --codeflow-background: #ece4fd;
+      --grid-universe: #15803d;
+      --grid-universe-background: #dcf2e3;
+      --unicon: #b45309;
+      --unicon-background: #fbecd7;
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --background: #0b0f15;
+        --surface: #121821;
+        --text: #e7ebf2;
+        --text-muted: #a1aabb;
+        --text-faint: #6f7889;
+        --border: #222a36;
+        --accent: #8aa3ff;
+        --accent-hover: #a9bbff;
+        --accent-soft: #1b2546;
+        --on-accent: #0b0f15;
+        --shadow: rgb(0 0 0 / .35);
+        --shadow-hover: rgb(0 0 0 / .5);
+        --highlight: transparent;
+        --badge-text: #f0b45e;
+        --badge-background: #352610;
+        --mark-left: #3a4a7e;
+        --mark-bottom: #5873c9;
+        --mark-right: #7d9aff;
+        --gradeflow-primary: #5fa1f3;
+        --gradeflow-muted: #4275b9;
+        --gradeflow-background: #121f33;
+        --gradeflow-border: #1c2d47;
+        --examdesk-primary: #6b8ef2;
+        --examdesk-muted: #34467e;
+        --examdesk-background: #151b35;
+        --examdesk-border: #212a4b;
+        --edcraft: #5eead4;
+        --edcraft-background: #10302d;
+        --codeflow: #c4b5fd;
+        --codeflow-background: #261c45;
+        --grid-universe: #86efac;
+        --grid-universe-background: #122b1a;
+        --unicon: #fcd34d;
+        --unicon-background: #342610;
+      }
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
     body {
-      background: linear-gradient(135deg, var(--color-bg-from) 0%, var(--color-bg-to) 100%);
-      color: var(--color-ink);
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      overflow-x: hidden;
+      margin: 0;
+      background: var(--background);
+      color: var(--text);
+      font: 400 15px/1.55 var(--font);
+      font-optical-sizing: auto;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    ::selection { background: var(--accent-soft); color: var(--text); }
+    h1, h2, h3, p { margin: 0; }
+    a { color: inherit; text-decoration: none; -webkit-tap-highlight-color: transparent; }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 8px; }
+    svg { display: block; flex: none; }
+
+    .container {
+      max-width: 1080px;
+      margin-inline: auto;
+      padding-left: max(24px, env(safe-area-inset-left, 0px));
+      padding-right: max(24px, env(safe-area-inset-right, 0px));
     }
 
-    body::before,
-    body::after {
-      content: '';
-      position: fixed;
-      border-radius: 50%;
-      filter: blur(80px);
-      opacity: 0.4;
-      pointer-events: none;
-      z-index: 0;
-    }
+    /* Header */
+    .site-header { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 650; font-size: 17px; letter-spacing: -0.015em; }
+    .brand svg { width: 24px; height: 24px; }
+    .icon-link { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 10px; color: var(--text-muted); transition: color .15s, background-color .15s; }
+    .icon-link:hover { color: var(--text); background: var(--surface); }
+    .icon-link svg { width: 20px; height: 20px; }
 
-    body::before {
-      width: 520px;
-      height: 520px;
-      background: radial-gradient(circle, #a8d4ff, #c0e0ff);
-      top: -120px;
-      left: -120px;
-      animation: drift 12s ease-in-out infinite alternate;
-    }
+    /* Hero */
+    .hero { display: grid; grid-template-columns: 1fr auto; align-items: center; column-gap: 64px; padding-block: 64px; }
+    .hero-text { display: grid; gap: 18px; }
+    .hero h1 { font-size: clamp(36px, 5.4vw, 56px); line-height: 1.04; letter-spacing: -0.038em; font-weight: 700; text-wrap: balance; max-width: 16ch; }
+    .hero p { font-size: 18px; line-height: 1.6; color: var(--text-muted); max-width: 50ch; text-wrap: pretty; }
+    .hero-mark { width: 188px; height: 188px; margin-right: 8px; }
+    .hero-mark rect { transform-box: fill-box; transform-origin: center; animation: place-block .7s cubic-bezier(.2, .9, .25, 1) both; animation-delay: calc(var(--order) * 70ms + 120ms); }
+    @keyframes place-block { from { opacity: 0; transform: translateY(-28%) scale(.92); } }
 
-    body::after {
-      width: 480px;
-      height: 480px;
-      background: radial-gradient(circle, #ffb89a, #ffd4c0);
-      bottom: -120px;
-      right: -120px;
-      animation: drift 14s ease-in-out infinite alternate-reverse;
+    /* Featured projects */
+    .featured-projects { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .featured-card {
+      position: relative; overflow: hidden; isolation: isolate;
+      display: grid; grid-template-rows: auto auto 1fr; gap: 24px;
+      min-height: 268px; padding: 32px;
+      border: 1px solid var(--card-border); border-radius: 24px;
+      background: var(--card-background);
+      box-shadow: inset 0 1px 0 var(--highlight);
     }
-
-    @keyframes drift {
-      from { transform: translate(0, 0) scale(1); }
-      to   { transform: translate(40px, 30px) scale(1.08); }
+    .featured-card.gradeflow { --card-background: var(--gradeflow-background); --card-border: var(--gradeflow-border); }
+    .featured-card.examdesk { --card-background: var(--examdesk-background); --card-border: var(--examdesk-border); }
+    .watermark { position: absolute; right: -36px; bottom: -36px; width: 200px; height: 200px; opacity: .16; z-index: -1; pointer-events: none; transition: transform .4s cubic-bezier(.2, .9, .25, 1); }
+    .product-logo { width: 44px; height: 44px; }
+    .card-text { display: grid; gap: 8px; }
+    .featured-card h2 { font-size: 26px; line-height: 1.15; font-weight: 700; letter-spacing: -0.025em; }
+    .featured-card p { font-size: 16px; color: var(--text-muted); max-width: 34ch; text-wrap: pretty; }
+    .card-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; align-self: end; margin-top: 4px; }
+    .button {
+      display: inline-flex; align-items: center; gap: 8px;
+      height: 40px; padding-inline: 16px; border-radius: 11px;
+      background: var(--accent); color: var(--on-accent);
+      font-weight: 600; font-size: 14px; letter-spacing: -0.005em;
+      box-shadow: 0 1px 2px var(--shadow), inset 0 1px 0 rgb(255 255 255 / .14);
+      transition: background-color .15s;
     }
+    .button svg { width: 14px; height: 14px; transition: transform .2s ease; }
+    .url { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--text-faint); }
+    .url svg { width: 13px; height: 13px; }
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
+    /* More projects */
+    .more-projects { margin-top: 56px; }
+    .section-title { font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 14px; }
+    .project-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .project-card {
+      display: grid; grid-template-columns: auto 1fr auto; gap: 16px;
+      padding: 20px; border: 1px solid var(--border); border-radius: 18px; background: var(--surface);
+      box-shadow: 0 1px 2px var(--shadow);
     }
+    .project-initial { align-self: start; width: 40px; height: 40px; border-radius: 11px; display: grid; place-items: center; font-weight: 650; font-size: 16px; }
+    .project-initial.edcraft { color: var(--edcraft); background: var(--edcraft-background); }
+    .project-initial.codeflow { color: var(--codeflow); background: var(--codeflow-background); }
+    .project-initial.grid-universe { color: var(--grid-universe); background: var(--grid-universe-background); }
+    .project-initial.unicon { color: var(--unicon); background: var(--unicon-background); }
+    .project-card .card-text { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+    .project-card h3 { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-weight: 600; font-size: 16px; line-height: 1.5; letter-spacing: -0.01em; }
+    .project-card p { font-size: 14px; color: var(--text-muted); text-wrap: pretty; }
+    .project-card .url { margin-top: auto; padding-top: 8px; font-size: 12.5px; }
+    .external-icon { align-self: start; width: 16px; height: 16px; color: var(--text-faint); margin-top: 2px; transition: transform .2s ease, color .15s; }
+    .badge { font-size: 11px; font-weight: 600; color: var(--badge-text); background: var(--badge-background); border-radius: 99px; padding: 2px 8px; }
 
-    main {
-      padding: 3rem 1.5rem;
-      max-width: 860px;
-      width: 100%;
-      position: relative;
-      z-index: 1;
+    /* Hover and press */
+    .featured-card, .project-card { transition: transform .25s cubic-bezier(.2, .9, .25, 1), box-shadow .25s ease, border-color .2s ease; }
+    @media (hover: hover) {
+      .featured-card:hover, .project-card:hover { transform: translateY(-3px); border-color: var(--accent); box-shadow: 0 14px 32px -8px var(--shadow-hover); }
+      .featured-card:hover .button { background: var(--accent-hover); }
+      .featured-card:hover .button svg, .project-card:hover .external-icon { transform: translate(2px, -2px); }
+      .project-card:hover .external-icon { color: var(--accent); }
+      .featured-card:hover .watermark { transform: scale(1.04) rotate(-2deg); }
     }
+    .featured-card:active, .project-card:active { transform: translateY(-1px); }
 
-    .eyebrow {
-      display: inline-block;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      background: linear-gradient(90deg, var(--color-blue-1), var(--color-coral-1));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 1rem;
-      animation: fadeUp 0.5s ease both;
+    /* Footer */
+    .site-footer { margin-top: 80px; border-top: 1px solid var(--border); }
+    .footer-content { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-block: 28px 36px; font-size: 13px; color: var(--text-muted); }
+    .footer-content .brand { font-size: 13px; font-weight: 500; gap: 8px; }
+    .footer-content .brand svg { width: 18px; height: 18px; }
+    .footer-content nav { display: flex; gap: 20px; }
+    .footer-content nav a:hover { color: var(--text); }
+
+    @media (max-width: 900px) {
+      .featured-projects { grid-template-columns: 1fr; }
+      .hero { column-gap: 40px; }
+      .hero-mark { width: 140px; height: 140px; }
     }
-
-    h1 {
-      font-size: clamp(3.5rem, 12vw, 6.5rem);
-      font-weight: 800;
-      line-height: 1.05;
-      letter-spacing: -0.03em;
-      margin-bottom: 0.4rem;
-      animation: fadeUp 0.5s 0.05s ease both;
-      background: linear-gradient(135deg, var(--color-blue-1) 0%, #0a3a8a 40%, var(--color-coral-1) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+    @media (max-width: 640px) {
+      .site-header { height: 64px; }
+      .hero { grid-template-columns: 1fr; padding-block: 28px 40px; }
+      .hero-mark { display: none; }
+      .hero p { font-size: 16px; }
+      .featured-card { padding: 24px; min-height: 0; border-radius: 20px; }
+      .featured-card h2 { font-size: 22px; }
+      .watermark { width: 150px; height: 150px; }
+      .project-grid { grid-template-columns: 1fr; gap: 12px; }
+      .project-card { padding: 16px; }
+      .more-projects { margin-top: 44px; }
+      .site-footer { margin-top: 56px; }
     }
-
-    .tagline-bar {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      margin-bottom: 1.75rem;
-      animation: fadeUp 0.5s 0.1s ease both;
-    }
-
-    .tagline-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-
-    .description {
-      font-size: clamp(1rem, 2.5vw, 1.15rem);
-      color: var(--color-muted);
-      line-height: 1.75;
-      margin: 0 auto 3rem auto;
-      max-width: 540px;
-      animation: fadeUp 0.5s 0.15s ease both;
-    }
-
-    .projects {
-      margin-bottom: 3rem;
-      animation: fadeUp 0.5s 0.2s ease both;
-    }
-
-    .projects-label {
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--color-faint);
-      margin-bottom: 1.25rem;
-    }
-
-    .project-links {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .project-link {
-      display: inline-block;
-      background: var(--color-surface);
-      color: var(--color-ink);
-      font-size: 0.95rem;
-      font-weight: 700;
-      padding: 0.85rem 1.75rem;
-      border-radius: 16px;
-      text-decoration: none;
-      border: 1.5px solid var(--color-border);
-      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-      position: relative;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    }
-
-    .project-link[data-accent="blue-deep"]:hover  { box-shadow: 0 8px 30px rgba(29,111,242,0.22);  border-color: #1d6ff2; }
-    .project-link[data-accent="blue-sky"]:hover   { box-shadow: 0 8px 30px rgba(14,165,233,0.22);  border-color: #0ea5e9; }
-    .project-link[data-accent="blue-navy"]:hover  { box-shadow: 0 8px 30px rgba(30,64,175,0.22);   border-color: #1e40af; }
-    .project-link[data-accent="coral"]:hover      { box-shadow: 0 8px 30px rgba(255,92,58,0.22);   border-color: #ff5c3a; }
-    .project-link[data-accent="coral-warm"]:hover { box-shadow: 0 8px 30px rgba(255,140,90,0.22);  border-color: #ff8c5a; }
-
-    .project-link:hover {
-      transform: translateY(-3px);
-    }
-
-    .project-link:focus-visible {
-      outline: 2px solid var(--color-blue-1);
-      outline-offset: 3px;
-    }
-    
-    .project-name {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.4rem;
-    }
-
-    .subtitle {
-      display: block;
-      font-size: 0.72rem;
-      font-weight: 400;
-      color: var(--color-muted);
-      margin-top: 0.25rem;
-      letter-spacing: 0.02em;
-    }
-
-    .wip-badge {
-      display: inline-block;
-      font-size: 0.58rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      background: #fff3ee;
-      color: #c2410c;
-      padding: 2px 7px;
-      border-radius: 99px;
-      margin-left: 0.3rem;
-      vertical-align: middle;
-      border: 1px solid #fed7c0;
-    }
-
-    .contact {
-      font-size: 0.9rem;
-      color: var(--color-muted);
-      animation: fadeUp 0.5s 0.3s ease both;
-    }
-
-    .contact a {
-      color: var(--color-blue-1);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-      text-decoration-color: rgba(29,111,242,0.3);
-      font-weight: 600;
-      transition: text-decoration-color 0.2s;
-    }
-
-    .contact a:hover {
-      text-decoration-color: var(--color-blue-1);
-    }
-
-    .contact a:focus-visible {
-      outline: 2px solid var(--color-blue-1);
-      outline-offset: 2px;
-      border-radius: 2px;
+    @media (prefers-reduced-motion: reduce) {
+      .hero-mark rect { animation: none; }
+      .featured-card, .project-card, .watermark, .external-icon, .button svg { transition: none; }
+      .featured-card:hover, .project-card:hover, .featured-card:active, .project-card:active, .featured-card:hover .watermark { transform: none; }
     }
   </style>
 </head>
 <body>
+  <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+    <symbol id="logo-edfab" viewBox="0 0 32 32">
+      <g fill="var(--mark-left)"><rect x="2.75" y="2.75" width="8" height="8" rx="2.4"/><rect x="2.75" y="12.25" width="8" height="8" rx="2.4"/><rect x="2.75" y="21.75" width="8" height="8" rx="2.4"/></g>
+      <rect x="12.25" y="21.75" width="8" height="8" rx="2.4" fill="var(--mark-bottom)"/>
+      <g fill="var(--mark-right)"><rect x="21.75" y="2.75" width="8" height="8" rx="2.4"/><rect x="21.75" y="12.25" width="8" height="8" rx="2.4"/><rect x="21.75" y="21.75" width="8" height="8" rx="2.4"/></g>
+    </symbol>
+    <symbol id="logo-gradeflow" viewBox="10.5 8.9 44 44">
+      <path fill="var(--gradeflow-muted)" d="M27.4 47.6C21.2 42.3 9.3 27.9 11 26.5C12.9 25 20.1 25.5 23.4 29.7C26.7 34 28.1 40.3 27.4 47.6Z"/>
+      <path fill="var(--gradeflow-primary)" d="M28.6 47.6C37.8 39 56.4 16.8 54 15C51.4 13 40.8 14.2 35.7 20.7C30.7 27.2 28.2 36.8 28.6 47.6Z"/>
+    </symbol>
+    <symbol id="logo-examdesk" viewBox="0 0 32 32">
+      <g fill="var(--examdesk-muted)"><rect x="1.5" y="1.5" width="13" height="13" rx="4"/><rect x="1.5" y="17.5" width="13" height="13" rx="4"/><rect x="17.5" y="17.5" width="13" height="13" rx="4"/></g>
+      <path fill="var(--examdesk-primary)" d="M21.5 1.5h5a4 4 0 0 1 4 4v5a4 4 0 0 1-4 4h-5q-1 0-1.96.3l-2.24.69q-1.14.35-.79-.79l.69-2.24q.3-.96.3-1.96v-5a4 4 0 0 1 4-4z"/>
+      <path d="M20.6 8.3l2.3 2.3 4.5-4.7" fill="none" stroke="#fff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-globe" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.7 5.6 3.7 9s-1.2 6.4-3.7 9c-2.5-2.6-3.7-5.6-3.7-9S9.5 5.6 12 3Z"/></g></symbol>
+    <symbol id="icon-github" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.8 1.19 1.83 1.19 3.09 0 4.42-2.69 5.39-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></symbol>
+    <symbol id="icon-external" viewBox="0 0 16 16"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  </svg>
+
+  <header class="container site-header">
+    <a class="brand" href="/"><svg aria-hidden="true"><use href="#logo-edfab"/></svg>EdFab</a>
+    <a class="icon-link" href="https://github.com/edfabhq" target="_blank" rel="noopener noreferrer" aria-label="EdFab on GitHub"><svg aria-hidden="true"><use href="#icon-github"/></svg></a>
+  </header>
 
   <main>
-    <p class="eyebrow">Education Fabrication Lab</p>
-
-    <h1>EdFab</h1>
-
-    <div class="tagline-bar">
-      <span class="tagline-dot" style="background:#1d6ff2"></span>
-      <span class="tagline-dot" style="background:#0ea5e9"></span>
-      <span class="tagline-dot" style="background:#ff5c3a"></span>
-    </div>
-
-    <p class="description">
-      A space where <b>learning experiences</b> are designed, prototyped,
-      and built from the ground up — with curiosity, craft, and care.
-    </p>
-
-    <div class="projects">
-      <p class="projects-label">Projects</p>
-      <div class="project-links">
-
-        <a href="https://gradeflow.edfab.org" class="project-link"
-           data-accent="blue-deep" target="_blank" rel="noopener noreferrer">
-          <span class="project-name">GradeFlow</span>
-          <span class="subtitle">Advanced assessment grading</span>
-        </a>
-        
-        <a href="https://examdesk.edfab.org" class="project-link"
-           data-accent="coral-warm" target="_blank" rel="noopener noreferrer">
-          <span class="project-name">Exam Desk</span>
-          <span class="subtitle">Exam clarification relay</span>
-        </a>
-
-        <a href="https://edcraft.edfab.org" class="project-link"
-           data-accent="blue-sky" target="_blank" rel="noopener noreferrer">
-          <span class="project-name">EdCraft</span>
-          <span class="subtitle">Procedural assessment generation</span>
-        </a>
-
-        <a href="https://codeflow.edfab.org" class="project-link"
-           data-accent="coral-warm" target="_blank" rel="noopener noreferrer">
-          <span class="project-name">CodeFlow</span>
-          <span class="subtitle">Code visualization</span>
-        </a>
-
-        <a href="https://github.com/grid-universe" class="project-link"
-           data-accent="blue-navy" target="_blank" rel="noopener noreferrer">
-          <span class="project-name">Grid Universe</span>
-          <span class="subtitle">Modular gridworld environment</span>
-        </a>
-
-        <a href="https://github.com/uniconhq" class="project-link"
-           data-accent="coral" target="_blank" rel="noopener noreferrer">
-          <span class="project-name">
-            Unicon
-            <span aria-label="Work in progress" class="wip-badge">WIP</span>
-          </span>
-          <span class="subtitle">Universal contest platform</span>
-        </a>
-
+    <section class="container hero">
+      <div class="hero-text">
+        <h1>The Education Fabrication Lab.</h1>
+        <p>A lab that turns problems in teaching into software. Each project does one thing well, and all of them are open source.</p>
       </div>
-    </div>
+      <svg class="hero-mark" viewBox="0 0 32 32" aria-hidden="true">
+        <rect style="--order: 0" x="2.75" y="21.75" width="8" height="8" rx="2.4" fill="var(--mark-left)"/>
+        <rect style="--order: 1" x="2.75" y="12.25" width="8" height="8" rx="2.4" fill="var(--mark-left)"/>
+        <rect style="--order: 2" x="2.75" y="2.75" width="8" height="8" rx="2.4" fill="var(--mark-left)"/>
+        <rect style="--order: 3" x="12.25" y="21.75" width="8" height="8" rx="2.4" fill="var(--mark-bottom)"/>
+        <rect style="--order: 4" x="21.75" y="21.75" width="8" height="8" rx="2.4" fill="var(--mark-right)"/>
+        <rect style="--order: 5" x="21.75" y="12.25" width="8" height="8" rx="2.4" fill="var(--mark-right)"/>
+        <rect style="--order: 6" x="21.75" y="2.75" width="8" height="8" rx="2.4" fill="var(--mark-right)"/>
+      </svg>
+    </section>
 
-    <p class="contact">
-      Get in touch — <a href="mailto:hello@edfab.org">hello@edfab.org</a>
-    </p>
+    <section class="container" aria-label="Projects">
+      <div class="featured-projects">
+        <a class="featured-card gradeflow" href="https://gradeflow.edfab.org" target="_blank" rel="noopener noreferrer">
+          <svg class="watermark" aria-hidden="true"><use href="#logo-gradeflow"/></svg>
+          <svg class="product-logo" aria-hidden="true"><use href="#logo-gradeflow"/></svg>
+          <div class="card-text">
+            <h2>GradeFlow</h2>
+            <p>A platform that marks students' answers using a mark scheme you build from rules, code and AI.</p>
+          </div>
+          <div class="card-actions">
+            <span class="button">Open GradeFlow<svg aria-hidden="true"><use href="#icon-external"/></svg></span>
+            <span class="url">gradeflow.edfab.org</span>
+          </div>
+        </a>
+        <a class="featured-card examdesk" href="https://examdesk.edfab.org" target="_blank" rel="noopener noreferrer">
+          <svg class="watermark" aria-hidden="true"><use href="#logo-examdesk"/></svg>
+          <svg class="product-logo" aria-hidden="true"><use href="#logo-examdesk"/></svg>
+          <div class="card-text">
+            <h2>Exam Desk</h2>
+            <p>A platform that passes students' questions during an exam to the examiners, and their answers back.</p>
+          </div>
+          <div class="card-actions">
+            <span class="button">Open Exam Desk<svg aria-hidden="true"><use href="#icon-external"/></svg></span>
+            <span class="url">examdesk.edfab.org</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="more-projects">
+        <h2 class="section-title">More from EdFab</h2>
+        <div class="project-grid">
+          <a class="project-card" href="https://edcraft.edfab.org" target="_blank" rel="noopener noreferrer">
+            <span class="project-initial edcraft" aria-hidden="true">E</span>
+            <div class="card-text">
+              <h3>EdCraft</h3>
+              <p>A platform that creates programming quiz questions from a piece of code.</p>
+              <span class="url"><svg aria-hidden="true"><use href="#icon-globe"/></svg>edcraft.edfab.org</span>
+            </div>
+            <svg class="external-icon" aria-hidden="true"><use href="#icon-external"/></svg>
+          </a>
+          <a class="project-card" href="https://codeflow.edfab.org" target="_blank" rel="noopener noreferrer">
+            <span class="project-initial codeflow" aria-hidden="true">C</span>
+            <div class="card-text">
+              <h3>CodeFlow</h3>
+              <p>A web app that draws a program's data as it runs, step by step.</p>
+              <span class="url"><svg aria-hidden="true"><use href="#icon-globe"/></svg>codeflow.edfab.org</span>
+            </div>
+            <svg class="external-icon" aria-hidden="true"><use href="#icon-external"/></svg>
+          </a>
+          <a class="project-card" href="https://github.com/grid-universe" target="_blank" rel="noopener noreferrer">
+            <span class="project-initial grid-universe" aria-hidden="true">G</span>
+            <div class="card-text">
+              <h3>Grid Universe</h3>
+              <p>A toolkit for building maze and puzzle worlds to test AI programs.</p>
+              <span class="url"><svg aria-hidden="true"><use href="#icon-github"/></svg>github.com/grid-universe</span>
+            </div>
+            <svg class="external-icon" aria-hidden="true"><use href="#icon-external"/></svg>
+          </a>
+          <a class="project-card" href="https://github.com/uniconhq" target="_blank" rel="noopener noreferrer">
+            <span class="project-initial unicon" aria-hidden="true">U</span>
+            <div class="card-text">
+              <h3>Unicon <span class="badge">In progress</span></h3>
+              <p>A platform for running programming contests of any kind.</p>
+              <span class="url"><svg aria-hidden="true"><use href="#icon-github"/></svg>github.com/uniconhq</span>
+            </div>
+            <svg class="external-icon" aria-hidden="true"><use href="#icon-external"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <span class="brand"><svg aria-hidden="true"><use href="#logo-edfab"/></svg>EdFab · Education Fabrication Lab</span>
+      <nav aria-label="Contact">
+        <a href="mailto:hello@edfab.org">hello@edfab.org</a>
+        <a href="https://github.com/edfabhq" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </nav>
+    </div>
+  </footer>
 </body>
 </html>
